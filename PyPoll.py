@@ -1,10 +1,3 @@
-# The data we need to retrieve
-# 1. the total number of votes 
-# 2. complete list of candidates who received votes 
-# 3. percentage of votes for each candidate 
-# 4. total number of votes each candidate won 
-# 5. the winner based on popular vote 
-
 # add dependencies (csv needed to read csv file, os need to utilize path)
 import csv
 import os
@@ -20,10 +13,8 @@ total_votes = 0
 candidate_options = []
 # create empty candidate/votes dictionary
 candidate_votes = {}
-
 # create empty string for winning candidate name
 winning_candidate = ""
-
 # initialize winning count and percentage
 winning_count = 0
 winning_percentage = 0
@@ -55,13 +46,29 @@ with open(file_to_load) as election_data:
         # add vote to individual candidate vote count
         candidate_votes[candidate_name] += 1
 
+with open(file_to_save, 'w') as txt_file:
+
+    election_results = (
+        f"\nElection Results\n"
+        f"-----------------------------------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"-----------------------------------------------\n")
+
+    print(election_results, end="")
+
+    txt_file.write(election_results)
+
     for candidate_name in candidate_options:
 
         votes = candidate_votes[candidate_name]
 
         vote_percentage = float(votes) / float(total_votes) * 100
 
-        print(f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+        candidate_results = (f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
+
+        print(candidate_results)
+
+        txt_file.write(candidate_results)
 
         # determine if votes/percentage are greater than the winning count/percentage
         if (votes > winning_count) and (vote_percentage > winning_percentage):
@@ -72,12 +79,12 @@ with open(file_to_load) as election_data:
             winning_candidate = candidate_name
 
     winning_candidate_summary = (
-        f"--------------------------------\n"
+        f"---------------------------------------------------------\n"
         f"Winner: {winning_candidate}\n"
         f"Winning Vote Count: {winning_count:,}\n"
         f"Winning Percentage: {winning_percentage:.1f}%\n"
-        f"--------------------------------\n")
-
+        f"---------------------------------------------------------\n")
+    txt_file.write(winning_candidate_summary)
     print(winning_candidate_summary)
 #print(candidate_votes)        
 #print(total_votes)
