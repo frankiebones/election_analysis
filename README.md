@@ -25,7 +25,7 @@ file_to_save = os.path.join("Analysis", "election_analysis.txt")
 ```
 
 ## Election-Audit Results
-While one could of course simply determine the number of votes by counting the number of rows in the csv file, we utilized Python to create a script that looped through each of the rows while simultaneously extracting all the unique candidate names and counties involved in the election and subsequently storing them in a list. 
+While one could of course simply determine the number of votes by counting the number of rows in the csv file, we utilized Python to create a script that looped through each of the rows. 
 
 ```
 for row in reader:
@@ -36,11 +36,20 @@ for row in reader:
         # Get the candidate name from each row.
         candidate_name = row[2]
 
-        # 3: Get the county name from each row.
+        # Get the county name from each row.
         county_name = row[1]
+```
+Then we extracted all the unique candidate names and counties involved in the election and stored them in a list.<br> 
+<i>example shown for candidate names only but similar process was used for county names</i>
+
+```
+if candidate_name not in candidate_options:
+        # Add the candidate name to the candidate list.
+        candidate_options.append(candidate_name)
 ```
 
 ## Election-Audit Summary
+While some indexes may need to be changed to accomodate differing layouts of csv files, this script is scalable and can be utilized for just about any election in Colorado or country wide for that matter regardless of the number of candidates and/or jurisdictions included.
 One of the recommendations I have for the election commission would be to increase their outreach efforts in both Jefferson and Arapahoe Counties as their voter turnout are both below 7% while Denver was over 42%. 
 ![voter_turnout](https://user-images.githubusercontent.com/15967377/165414605-fb71cef7-03c8-4c63-a88d-06c7dca855f5.PNG)
 
