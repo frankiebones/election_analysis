@@ -49,7 +49,7 @@ if candidate_name not in candidate_options:
 ```
 
 ## Election-Audit Summary
-While some indexes may need to be changed to accomodate differing layouts of csv files, this script is scalable and can be utilized for just about any election in Colorado or country wide for that matter regardless of the number of candidates and/or jurisdictions included.
+While some indexes may need to be changed to accomodate differing layouts of csv files, this script is scalable and can be utilized for just about any election in Colorado or country wide for that matter regardless of the number of candidates and/or jurisdictions included.<br>
 One of the recommendations I have for the election commission would be to increase their outreach efforts in both Jefferson and Arapahoe Counties as their voter turnout are both below 7% while Denver was over 42%. 
 ![voter_turnout](https://user-images.githubusercontent.com/15967377/165414605-fb71cef7-03c8-4c63-a88d-06c7dca855f5.PNG)
 
